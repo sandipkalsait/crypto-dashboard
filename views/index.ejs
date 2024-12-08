@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cryptocurrency Dashboard</h1>
+
+    <!-- Filter Form -->
+    <div class="filter-container">
+      <form id="filterForm">
+        <label for="minPrice">Min Price (USD):</label>
+        <input type="number" id="minPrice" name="minPrice" step="any" min="0" placeholder="0" />
+
+        <label for="maxPrice">Max Price (USD):</label>
+        <input type="number" id="maxPrice" name="maxPrice" step="any" min="0" placeholder="500" />
+
+        <label for="minMarketCap">Min Market Cap (USD):</label>
+        <input type="number" id="minMarketCap" name="minMarketCap" min="0" placeholder="500000000" />
+
+        <label for="minLiquidity">Min Liquidity (USD):</label>
+        <input type="number" id="minLiquidity" name="minLiquidity" min="0" placeholder="100000000" />
+
+        <button type="submit">Filter</button>
+      </form>
+    </div>
+
+    <!-- Filtered Results Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Price (USD)</th>
+          <th>Market Cap (USD)</th>
+          <th>24h Volume (USD)</th>
+          <th>Liquidity (USD)</th>
+          <th>24h Change (%)</th>
+        </tr>
+      </thead>
+      <tbody id="filterResults">
+        <% coins.forEach(coin => { %>
+          <tr>
+            <td><%= coin.name %></td>
+            <td><%= coin.symbol %></td>
+            <td><%= coin.price.toFixed(2) %></td>
+            <td><%= coin.marketCap.toFixed(2) %></td>
+            <td><%= coin.volume24h.toFixed(2) %></td>
+            <td><%= coin.liquidity.toFixed(2) %></td>
+            <td><%= coin.change24h.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
